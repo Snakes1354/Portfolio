@@ -1,0 +1,458 @@
+:root {
+  color-scheme: light;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #050505;
+  background: #ffdf43;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+html {
+  scroll-padding-top: 0;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse at 72% 38%, rgba(255, 238, 117, .62), transparent 58%),
+    radial-gradient(ellipse at 9% 77%, rgba(255, 238, 117, .42), transparent 42%),
+    linear-gradient(115deg, #ffdb31 0%, #ffe451 54%, #ffdd3e 100%);
+}
+
+.homepage {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+}
+
+.homepage::after,
+.about-section::after,
+.work-section::after {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  width: 100%;
+  right: 0;
+  bottom: 0;
+  height: 34px;
+  background: url("../assets/red-section-line.svg") center / 100% 34px no-repeat;
+  content: "";
+  pointer-events: none;
+}
+
+.site-header {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  display: flex;
+  width: 100%;
+  height: 108px;
+  justify-content: flex-end;
+  padding: 40px 26px 0;
+  background: rgba(255, 223, 67, .22);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(54px, 4.1vw, 62px);
+}
+
+.nav-link {
+  color: inherit;
+  font-size: clamp(32px, 2.38vw, 36px);
+  font-weight: 400;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.nav-link.is-current {
+  font-weight: 700;
+}
+
+.nav-link[aria-current="page"] {
+  font-weight: 700;
+}
+
+.sun-mark {
+  display: inline-flex;
+  width: 52px;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+}
+
+.sun-mark svg {
+  display: block;
+  width: 52px;
+  height: 52px;
+}
+
+.intro {
+  position: absolute;
+  top: 21.83%;
+  left: 29px;
+  width: min(674px, calc(100% - 58px));
+  text-align: center;
+}
+
+.intro-panel {
+  min-height: 209px;
+  padding: 40px 15px 7px;
+  background: #d23d33 url("../assets/red-paper-texture.png") center / 100% 100% no-repeat;
+}
+
+.intro h1 {
+  margin: 0 0 8px;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.intro h1 span {
+  color: #ffe44a;
+}
+
+.intro p {
+  margin: 0;
+  font-size: 27px;
+  line-height: 1.3;
+}
+
+.intro p strong {
+  font-weight: 700;
+}
+
+.view-work {
+  display: inline-block;
+  margin-top: 12px;
+  color: #d94235;
+  font-size: 24px;
+  line-height: 1.25;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.work-prompt {
+  position: absolute;
+  left: 50%;
+  bottom: 42px;
+  display: flex;
+  width: max-content;
+  max-width: calc(100% - 32px);
+  align-items: center;
+  justify-content: center;
+  gap: 27px;
+  transform: translateX(calc(-50% + 52px));
+  color: #ff4540;
+  font-size: 53px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.work-prompt svg {
+  display: block;
+  width: 48px;
+  height: 78px;
+  flex: 0 0 auto;
+}
+
+.page-section {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.section-title {
+  position: absolute;
+  top: 126px;
+  right: 16px;
+  left: 16px;
+  margin: 0;
+  color: #c63d35;
+  font-size: 55px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.about-portrait {
+  position: absolute;
+  top: 109px;
+  left: 5.55%;
+  display: block;
+  width: 234px;
+  height: 222px;
+  object-fit: cover;
+}
+
+.work-section .section-title {
+  top: 132px;
+}
+
+.work-gallery {
+  position: absolute;
+  top: 205px;
+  right: 5.7%;
+  bottom: 42px;
+  left: 9.8%;
+  display: grid;
+  grid-template-columns: 300px 300px minmax(0, 1fr);
+}
+
+.work-placeholder {
+  min-width: 0;
+  background: #c8d1d9;
+}
+
+.contact-section .section-title {
+  top: 122px;
+}
+
+.contact-section {
+  height: calc(100svh + 5cm);
+}
+
+.contact-panel {
+  position: absolute;
+  top: calc(197px + 5cm);
+  left: 50%;
+  display: flex;
+  width: min(669px, calc(100% - 40px));
+  height: 320px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 54px;
+  padding: 10px 16px;
+  transform: translateX(-50%);
+  background: #d23d33 url("../assets/red-paper-texture.png") center / 100% 100% no-repeat;
+  color: #ffdf43;
+  text-align: center;
+}
+
+.contact-panel p,
+.location-button,
+.linkedin-button {
+  margin: 0;
+  font-size: 36px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.location-button {
+  display: block;
+  width: 52px;
+  height: 64px;
+  flex: 0 0 64px;
+}
+
+.linkedin-button {
+  display: block;
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+}
+
+.email-button {
+  display: flex;
+  width: 88px;
+  height: 64px;
+  flex: 0 0 64px;
+  align-items: center;
+  justify-content: center;
+}
+
+.linkedin-button img,
+.location-button img,
+.email-button img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.email-button img {
+  width: 88px;
+  height: auto;
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    height: 88px;
+    padding: 35px 18px 0;
+  }
+
+  .site-nav {
+    justify-content: flex-end;
+    gap: clamp(14px, 4vw, 30px);
+  }
+
+  .nav-link {
+    font-size: clamp(16px, 4vw, 24px);
+  }
+
+  .sun-mark {
+    width: 34px;
+    height: 34px;
+    margin-left: -8px;
+  }
+
+  .sun-mark svg {
+    width: 34px;
+    height: 34px;
+  }
+
+  .intro {
+    top: 22%;
+    left: 18px;
+    width: calc(100% - 36px);
+  }
+
+  .intro-panel {
+    min-height: 0;
+    padding: 28px 14px 18px;
+  }
+
+  .intro h1 {
+    font-size: clamp(27px, 7vw, 36px);
+  }
+
+  .intro p {
+    font-size: clamp(18px, 4.5vw, 24px);
+    line-height: 1.3;
+  }
+
+  .view-work {
+    font-size: 21px;
+  }
+
+  .work-prompt {
+    left: 0;
+    right: 0;
+    gap: 13px;
+    font-size: clamp(30px, 8vw, 46px);
+    margin: 0 auto;
+    transform: none;
+    width: 100%;
+  }
+
+  .work-prompt svg {
+    width: 40px;
+    height: 62px;
+  }
+
+  .page-section {
+    min-height: 100vh;
+    min-height: 100svh;
+    height: auto;
+  }
+
+  .section-title,
+  .work-section .section-title,
+  .contact-section .section-title {
+    top: 105px;
+    font-size: clamp(36px, 9vw, 48px);
+  }
+
+  .about-section {
+    min-height: 680px;
+  }
+
+  .about-portrait {
+    top: 205px;
+    left: 50%;
+    width: min(234px, calc(100% - 40px));
+    height: auto;
+    aspect-ratio: 1.05;
+    transform: translateX(-50%);
+  }
+
+  .work-section {
+    min-height: 720px;
+    padding-bottom: 24px;
+  }
+
+  .work-gallery {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(150px, 1fr);
+    margin: 175px 20px 0;
+  }
+
+  .contact-section {
+    min-height: calc(620px + 5cm);
+  }
+
+  .contact-panel {
+    top: calc(175px + 5cm);
+    height: 290px;
+    gap: 38px;
+  }
+
+  .contact-panel p,
+  .location-button,
+  .linkedin-button {
+    font-size: clamp(18px, 4.8vw, 30px);
+    white-space: normal;
+  }
+}
+
+@media (max-width: 400px) {
+  .site-header {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .site-nav {
+    gap: 10px;
+  }
+
+  .nav-link {
+    font-size: 15px;
+  }
+
+  .sun-mark {
+    width: 28px;
+    height: 28px;
+    margin-left: -4px;
+  }
+
+  .sun-mark svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .work-prompt {
+    gap: 8px;
+    font-size: 29px;
+  }
+}

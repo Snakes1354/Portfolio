@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffdf43">
+    <title>Homepage | Daniel Worden</title>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <div class="homepage" id="homepage">
+      <header class="site-header">
+        <nav class="site-nav" aria-label="Main navigation">
+          <a class="nav-link is-current" href="#homepage" aria-current="page">Homepage</a>
+          <a class="nav-link" href="#work">Work</a>
+          <a class="nav-link" href="#about">About</a>
+          <a class="nav-link" href="#contact">Contact</a>
+          <span class="sun-mark" aria-label="Sun">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <circle cx="24" cy="24" r="8.5" fill="none" stroke="currentColor" stroke-width="5" />
+              <path d="M24 3v6M24 39v6M3 24h6M39 24h6M9.15 9.15l4.25 4.25m21.2 21.2 4.25 4.25m0-29.7-4.25 4.25m-21.2 21.2-4.25 4.25"
+                fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" />
+            </svg>
+          </span>
+        </nav>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="intro-title">
+          <div class="intro-panel">
+            <h1 id="intro-title">Hi, I’m <span>Daniel Worden.</span></h1>
+            <p>I’m a student at Fcot interested in <strong>programming, 3D modelling</strong>, and Music. Here’s some of the code I wrote for my projects.</p>
+          </div>
+          <a class="view-work" href="#work">View Work</a>
+        </section>
+      </main>
+
+      <a class="work-prompt" href="#work">
+        <span>Work Examples</span>
+        <svg viewBox="0 0 54 82" aria-hidden="true">
+          <path d="M22 0h10v54l13-13 7 7-25 29L2 48l7-7 13 13z" fill="currentColor" />
+        </svg>
+      </a>
+    </div>
+
+    <section class="page-section work-section" id="work" aria-labelledby="work-title">
+      <h2 class="section-title" id="work-title">Programming</h2>
+      <div class="work-gallery" aria-label="Programming work examples">
+        <div class="work-placeholder" aria-hidden="true"></div>
+        <div class="work-placeholder" aria-hidden="true"></div>
+        <div class="work-placeholder" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="page-section about-section" id="about" aria-labelledby="about-title">
+      <h2 class="section-title" id="about-title">About me</h2>
+      <img class="about-portrait" src="assets/about-portrait.png" alt="Portrait">
+    </section>
+
+    <section class="page-section contact-section" id="contact" aria-labelledby="contact-title">
+      <h2 class="section-title" id="contact-title">Contact</h2>
+      <div class="contact-panel">
+        <a class="location-button" href="https://www.google.com/maps/search/?api=1&amp;query=Hook%2C%20UK" target="_blank" rel="noopener noreferrer" aria-label="View Hook, UK on Google Maps">
+          <img src="assets/location-icon.png" alt="">
+        </a>
+        <a class="email-button" href="mailto:daniel_worden@icloud.com" aria-label="Email Daniel Worden">
+          <img src="assets/email-icon.png" alt="">
+        </a>
+        <a class="linkedin-button" href="https://www.linkedin.com/in/daniel-worden-45a08934b/" target="_blank" rel="noopener noreferrer" aria-label="Visit Daniel Worden on LinkedIn">
+          <img src="assets/linkedin-logo.png" alt="">
+        </a>
+      </div>
+    </section>
+    <script src="js/script.js" defer></script>
+  </body>
+</html>
