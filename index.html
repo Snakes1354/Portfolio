@@ -3,74 +3,211 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#ffdf43">
-    <title>Homepage | Daniel Worden</title>
+    <meta name="theme-color" content="#43006c">
+    <title>Portfolio | Daniel Worden</title>
+    <meta name="description" content="Daniel Worden portfolio homepage">
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <div class="homepage" id="homepage">
-      <header class="site-header">
-        <nav class="site-nav" aria-label="Main navigation">
-          <a class="nav-link is-current" href="#homepage" aria-current="page">Homepage</a>
-          <a class="nav-link" href="#work">Work</a>
-          <a class="nav-link" href="#about">About</a>
-          <a class="nav-link" href="#contact">Contact</a>
-          <span class="sun-mark" aria-label="Sun">
-            <svg viewBox="0 0 48 48" aria-hidden="true">
-              <circle cx="24" cy="24" r="8.5" fill="none" stroke="currentColor" stroke-width="5" />
-              <path d="M24 3v6M24 39v6M3 24h6M39 24h6M9.15 9.15l4.25 4.25m21.2 21.2 4.25 4.25m0-29.7-4.25 4.25m-21.2 21.2-4.25 4.25"
-                fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" />
+    <header class="site-header">
+      <div class="brand-wrap">
+        <a class="home-button" href="#home" aria-label="Go to homepage">
+          <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+            <path d="M30 24L14 50L30 76M70 24L86 50L70 76M44 18L56 82"/>
+          </svg>
+        </a>
+      </div>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="nav-link" href="#work">Work</a>
+        <a class="nav-link" href="#contact">Contact</a>
+        <a class="nav-link" href="#about">About</a>
+        <button class="settings-button" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+          <svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle class="sun-core" cx="12" cy="12" r="4" />
+            <path class="sun-rays" d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+            <path class="moon-shape" d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z" />
+          </svg>
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="panel home-panel">
+        <div class="hero-card">
+          <h1>Hi, I’m <span>Daniel Worden.</span></h1>
+          <p>
+            I’m currently enrolled at Farnborough College of Technology. I enjoy
+            <span class="glow-word">programming</span> and <span class="glow-word">3D modelling</span>.
+            Use the brightness button in the top right corner to switch themes.
+          </p>
+        </div>
+
+        <a class="view-work" href="#work">View Work</a>
+      </section>
+
+      <section id="work" class="panel work-panel">
+        <h2 class="section-title">{ <span><span class="pro-highlight">Pro</span>gramming</span> }</h2>
+
+        <div class="project-grid" aria-label="Programming work examples">
+          <article class="project-card">
+            <div class="project-preview preview-one" aria-hidden="true">
+              <svg viewBox="0 0 240 150" class="project-svg" aria-hidden="true">
+                <g fill="none" stroke="#1d1920" stroke-width="1.5">
+                  <rect x="38" y="42" width="42" height="22" rx="4"/>
+                  <rect x="96" y="42" width="42" height="22" rx="4"/>
+                  <rect x="154" y="42" width="42" height="22" rx="4"/>
+                  <path d="M77 54h17M136 54h17M58 64v26m42-26v26m42-26v26m42-26v26m-42 0H100m0 0H58m0 0h42m42 0h42m-42 0V64m42 0v26"/>
+                  <rect x="58" y="95" width="46" height="18" rx="4"/>
+                  <rect x="120" y="95" width="60" height="18" rx="4"/>
+                </g>
+              </svg>
+            </div>
+            <div class="project-label">Text example</div>
+            <button type="button">View Project <span>→</span></button>
+          </article>
+
+          <article class="project-card">
+            <div class="project-preview preview-two" aria-hidden="true">
+              <svg viewBox="0 0 240 150" class="project-svg" aria-hidden="true">
+                <g fill="none" stroke="#1d1920" stroke-width="1.5">
+                  <rect x="38" y="40" width="44" height="24" rx="4"/>
+                  <rect x="96" y="40" width="44" height="24" rx="4"/>
+                  <rect x="154" y="40" width="44" height="24" rx="4"/>
+                  <path d="M80 52h14M140 52h14M60 64v28m44-28v28m44-28v28m44-28v28m-44 0H100m0 0H60m0 0h40m44 0h40m-40 0V64m40 0v28"/>
+                  <rect x="56" y="95" width="60" height="18" rx="4"/>
+                  <rect x="128" y="95" width="54" height="18" rx="4"/>
+                </g>
+              </svg>
+            </div>
+            <div class="project-label">Text example</div>
+            <button type="button">View Project <span>→</span></button>
+          </article>
+
+          <article class="project-card">
+            <div class="project-preview preview-three" aria-hidden="true">
+              <svg viewBox="0 0 240 150" class="project-svg" aria-hidden="true">
+                <g fill="none" stroke="#1d1920" stroke-width="1.5">
+                  <rect x="36" y="38" width="42" height="22" rx="4"/>
+                  <rect x="96" y="38" width="42" height="22" rx="4"/>
+                  <rect x="156" y="38" width="42" height="22" rx="4"/>
+                  <path d="M80 50h16M138 50h16M58 62v26m42-26v26m42-26v26m42-26v26m-42 0H100m0 0H58m0 0h42m42 0h42m-42 0V62m42 0v26"/>
+                  <rect x="54" y="94" width="52" height="18" rx="4"/>
+                  <rect x="118" y="94" width="52" height="18" rx="4"/>
+                </g>
+              </svg>
+            </div>
+            <div class="project-label">Text example</div>
+            <button type="button">View Project <span>→</span></button>
+          </article>
+
+          <article class="project-card">
+            <div class="project-preview preview-four" aria-hidden="true">
+              <svg viewBox="0 0 240 150" class="project-svg" aria-hidden="true">
+                <g fill="none" stroke="#1d1920" stroke-width="1.5">
+                  <rect x="36" y="38" width="46" height="24" rx="4"/>
+                  <rect x="96" y="38" width="46" height="24" rx="4"/>
+                  <rect x="156" y="38" width="46" height="24" rx="4"/>
+                  <path d="M80 50h16M140 50h16M60 62v28m46-28v28m46-28v28m46-28v28m-46 0H106m0 0H60m0 0h46m44 0h40m-40 0V62m40 0v28"/>
+                  <rect x="52" y="95" width="58" height="18" rx="4"/>
+                  <rect x="122" y="95" width="60" height="18" rx="4"/>
+                </g>
+              </svg>
+            </div>
+            <div class="project-label">Text example</div>
+            <button type="button">View Project <span>→</span></button>
+          </article>
+
+          <article class="project-card">
+            <div class="project-preview preview-five" aria-hidden="true">
+              <svg viewBox="0 0 240 150" class="project-svg" aria-hidden="true">
+                <g fill="none" stroke="#1d1920" stroke-width="1.5">
+                  <rect x="36" y="40" width="46" height="22" rx="4"/>
+                  <rect x="96" y="40" width="46" height="22" rx="4"/>
+                  <rect x="156" y="40" width="46" height="22" rx="4"/>
+                  <path d="M80 52h16M140 52h16M58 64v28m46-28v28m42-28v28m42-28v28m-42 0H108m0 0H58m0 0h50m42 0h42m-42 0V64m42 0v28"/>
+                  <rect x="56" y="96" width="50" height="18" rx="4"/>
+                  <rect x="120" y="96" width="52" height="18" rx="4"/>
+                </g>
+              </svg>
+            </div>
+            <div class="project-label">Text example</div>
+            <button type="button">View Project <span>→</span></button>
+          </article>
+
+          <article class="project-card">
+            <div class="project-preview preview-six" aria-hidden="true">
+              <svg viewBox="0 0 240 150" class="project-svg" aria-hidden="true">
+                <g fill="none" stroke="#1d1920" stroke-width="1.5">
+                  <rect x="36" y="42" width="44" height="22" rx="4"/>
+                  <rect x="96" y="42" width="44" height="22" rx="4"/>
+                  <rect x="156" y="42" width="44" height="22" rx="4"/>
+                  <path d="M80 54h16M138 54h16M60 64v28m42-28v28m42-28v28m42-28v28m-42 0H102m0 0H60m0 0h42m42 0h42m-42 0V64m42 0v28"/>
+                  <rect x="56" y="96" width="50" height="18" rx="4"/>
+                  <rect x="120" y="96" width="56" height="18" rx="4"/>
+                </g>
+              </svg>
+            </div>
+            <div class="project-label">Text example</div>
+            <button type="button">View Project <span>→</span></button>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="panel contact-panel">
+        <h2 class="section-title">Contact</h2>
+
+        <div class="contact-card" aria-label="Contact details">
+          <div class="contact-row">
+            <svg viewBox="0 0 64 64" class="contact-icon" aria-hidden="true">
+              <path d="M32 6C22.3 6 14 14.2 14 24c0 14.9 18 34 18 34s18-19.1 18-34C50 14.2 41.7 6 32 6zm0 27.5c-5.2 0-9.5-4.3-9.5-9.5S26.8 14.5 32 14.5s9.5 4.3 9.5 9.5-4.3 9.5-9.5 9.5z" fill="currentColor"/>
             </svg>
-          </span>
-        </nav>
-      </header>
-
-      <main>
-        <section class="intro" aria-labelledby="intro-title">
-          <div class="intro-panel">
-            <h1 id="intro-title">Hi, I’m <span>Daniel Worden.</span></h1>
-            <p>I’m a student at Fcot interested in <strong>programming, 3D modelling</strong>, and Music. Here’s some of the code I wrote for my projects.</p>
+            <span>Location - Hook</span>
           </div>
-          <a class="view-work" href="#work">View Work</a>
-        </section>
-      </main>
 
-      <a class="work-prompt" href="#work">
-        <span>Work Examples</span>
-        <svg viewBox="0 0 54 82" aria-hidden="true">
-          <path d="M22 0h10v54l13-13 7 7-25 29L2 48l7-7 13 13z" fill="currentColor" />
-        </svg>
-      </a>
-    </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 64 64" class="contact-icon mail-icon" aria-hidden="true">
+              <path d="M8 18.5c0-2.8 2.2-5 5-5h38c2.8 0 5 2.2 5 5v27c0 2.8-2.2 5-5 5H13c-2.8 0-5-2.2-5-5v-27zm5 1.5 19 14.5 19-14.5v-1.5H13v1.5zm38 25V26.1L35.8 38.8a5 5 0 0 1-7.6 0L13 26.1v19.9h38z" fill="currentColor"/>
+            </svg>
+            <span>Email</span>
+          </div>
 
-    <section class="page-section work-section" id="work" aria-labelledby="work-title">
-      <h2 class="section-title" id="work-title">Programming</h2>
-      <div class="work-gallery" aria-label="Programming work examples">
-        <div class="work-placeholder" aria-hidden="true"></div>
-        <div class="work-placeholder" aria-hidden="true"></div>
-        <div class="work-placeholder" aria-hidden="true"></div>
-      </div>
-    </section>
+          <div class="contact-row">
+            <span class="linkedin-mark" aria-hidden="true">in</span>
+            <span>Linkedin</span>
+          </div>
+        </div>
+      </section>
 
-    <section class="page-section about-section" id="about" aria-labelledby="about-title">
-      <h2 class="section-title" id="about-title">About me</h2>
-      <img class="about-portrait" src="assets/about-portrait.png" alt="Portrait">
-    </section>
+      <section id="about" class="panel about-panel">
+        <div class="portrait-frame">
+          <img class="portrait-photo" src="Me.png" alt="Portrait of Daniel Worden">
+        </div>
 
-    <section class="page-section contact-section" id="contact" aria-labelledby="contact-title">
-      <h2 class="section-title" id="contact-title">Contact</h2>
-      <div class="contact-panel">
-        <a class="location-button" href="https://www.google.com/maps/search/?api=1&amp;query=Hook%2C%20UK" target="_blank" rel="noopener noreferrer" aria-label="View Hook, UK on Google Maps">
-          <img src="assets/location-icon.png" alt="">
-        </a>
-        <a class="email-button" href="mailto:daniel_worden@icloud.com" aria-label="Email Daniel Worden">
-          <img src="assets/email-icon.png" alt="">
-        </a>
-        <a class="linkedin-button" href="https://www.linkedin.com/in/daniel-worden-45a08934b/" target="_blank" rel="noopener noreferrer" aria-label="Visit Daniel Worden on LinkedIn">
-          <img src="assets/linkedin-logo.png" alt="">
-        </a>
-      </div>
-    </section>
-    <script src="js/script.js" defer></script>
+        <div class="about-content">
+          <h2 class="section-title about-title">About Me</h2>
+
+          <div class="about-card">
+            <p>
+              Hello! I am 18. I enjoy gaming, programming, and playing with my cats.
+              I enjoy listening to music; my favourite artist is Juice WRLD. My two
+              cats are named Stormy and Shadow. Stormy is the one in the top right
+              corner, and Shadow is the one below. My favourite game is Minecraft, as
+              the only limitation is your mind, which I find really cool. One of my
+              goals is to go to Japan.
+            </p>
+          </div>
+
+          <button class="home-link" type="button">Homepage</button>
+        </div>
+
+        <div class="cat-stage">
+          <img class="cat-photo shadow-photo" src="Shadow.png" alt="Shadow, a black cat">
+          <img class="cat-photo stormy-photo" src="Stormy.png" alt="Stormy, a white cat">
+        </div>
+      </section>
+    </main>
+
+    <script src="js/script.js"></script>
   </body>
 </html>
