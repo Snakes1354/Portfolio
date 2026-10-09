@@ -20,9 +20,12 @@
   };
 
   const HOLD_LIMIT = 12;
-  const FLICK_SPEED = 4000;
-  const MAX_THROW = 1400;
   const MAX_EXTRA = 80;
+
+  // Visitors whose device asks for reduced motion still get moving petals,
+  // just slower, fewer and without the fast flick-throws.
+  const FULL_MOTION = { pace: 1, density: 1, flickSpeed: 4000, maxThrow: 1400 };
+  const CALM_MOTION = { pace: 0.6, density: 0.6, flickSpeed: Infinity, maxThrow: 350 };
 
   // A single sakura petal drawn in unit space: narrow base at the bottom,
   // widest near the top, with the little notch at the tip.
@@ -37,6 +40,7 @@
   petalPath.closePath();
 
   const pointer = { active: false, x: 0, y: 0, lastX: 0, lastY: 0, vx: 0, vy: 0 };
+  let motion = reducedMotion.matches ? CALM_MOTION : FULL_MOTION;
   let petals = [];
   let gradients = [];
   let width = 0;
@@ -44,7 +48,6 @@
   let targetCount = 0;
   let time = 0;
   let lastTime = 0;
-  let frameId = 0;
 
   const random = (min, max) => min + Math.random() * (max - min);
 
@@ -99,14 +102,14 @@
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
     // Any surplus (from clicks or a smaller window) drains away as petals fall off screen.
-    targetCount = Math.round(Math.min(55, Math.max(14, (width * height) / 30000)));
+    targetCount = Math.round(Math.min(55, Math.max(14, (width * height) / 30000)) * motion.density);
     while (petals.length < targetCount) petals.push(createPetal(false));
   };
 
   // Let go of a petal, throwing it in whatever direction the mouse was moving.
   const release = (petal) => {
     const speed = Math.hypot(pointer.vx, pointer.vy);
-    const scale = speed > MAX_THROW ? MAX_THROW / speed : 1;
+    const scale = speed > motion.maxThrow ? motion.maxThrow / speed : 1;
 
     petal.held = false;
     petal.vx = pointer.vx * scale;
@@ -126,7 +129,9 @@
   };
 
   const update = (dt) => {
-    time += dt;
+    // Time for the natural drift runs slower in calm mode; following the mouse doesn't.
+    const ambient = dt * motion.pace;
+    time += ambient;
 
     const wind = 14 + Math.sin(time * 0.15) * 12;
     const ease = 1 - Math.exp(-dt * 1.6);
@@ -138,13 +143,13 @@
     petals.forEach((petal) => {
       petal.cooldown = Math.max(0, petal.cooldown - dt);
       petal.bloom = Math.min(1, petal.bloom + dt * 4);
-      petal.swayPhase += petal.swaySpeed * dt;
-      petal.flip += petal.flipSpeed * dt;
+      petal.swayPhase += petal.swaySpeed * ambient;
+      petal.flip += petal.flipSpeed * ambient;
 
       if (petal.held) {
         petal.holdTime -= dt;
 
-        if (pointer.active && petal.holdTime > 0 && pointerSpeed < FLICK_SPEED) {
+        if (pointer.active && petal.holdTime > 0 && pointerSpeed < motion.flickSpeed) {
           // Ride along with the mouse, trailing slightly behind it.
           petal.x += (pointer.x + petal.offsetX - petal.x) * follow;
           petal.y += (pointer.y + petal.offsetY - petal.y) * follow;
@@ -157,14 +162,14 @@
       }
 
       // Drift back towards a gentle, swaying fall.
-      const targetVx = wind * petal.depth + Math.sin(petal.swayPhase) * petal.swayAmp;
-      const targetVy = petal.fall * (1 + Math.cos(petal.swayPhase * 2) * 0.25);
+      const targetVx = (wind * petal.depth + Math.sin(petal.swayPhase) * petal.swayAmp) * motion.pace;
+      const targetVy = petal.fall * (1 + Math.cos(petal.swayPhase * 2) * 0.25) * motion.pace;
       petal.vx += (targetVx - petal.vx) * ease;
       petal.vy += (targetVy - petal.vy) * ease;
       petal.spin += (petal.baseSpin - petal.spin) * ease;
       petal.x += petal.vx * dt;
       petal.y += petal.vy * dt;
-      petal.rotation += petal.spin * dt;
+      petal.rotation += petal.spin * ambient;
 
       if (pointer.active && petal.cooldown === 0 && heldCount < HOLD_LIMIT) {
         const dx = petal.x - pointer.x;
@@ -217,6 +222,9 @@
   };
 
   const tick = (now) => {
+    // Queue the next frame first so one bad frame can never freeze the petals.
+    requestAnimationFrame(tick);
+
     const dt = Math.min((now - lastTime) / 1000, 0.05);
     lastTime = now;
 
@@ -226,20 +234,6 @@
     }
 
     render();
-    frameId = requestAnimationFrame(tick);
-  };
-
-  const start = () => {
-    cancelAnimationFrame(frameId);
-
-    // Keep the petals but hold them still for people who prefer less motion.
-    if (reducedMotion.matches) {
-      render();
-      return;
-    }
-
-    lastTime = performance.now();
-    frameId = requestAnimationFrame(tick);
   };
 
   const movePointer = (event) => {
@@ -262,14 +256,14 @@
   // Pop a new petal out wherever the page is clicked.
   const spawnPetal = (event) => {
     // Keyboard "clicks" have no real position, so skip them.
-    if (event.detail === 0 || reducedMotion.matches) return;
+    if (event.detail === 0) return;
     if (petals.length >= targetCount + MAX_EXTRA) return;
 
     const petal = createPetal(false, random(0.95, 1.15));
     petal.x = event.clientX;
     petal.y = event.clientY;
-    petal.vx = random(-80, 80);
-    petal.vy = random(-110, -50);
+    petal.vx = random(-80, 80) * motion.pace;
+    petal.vy = random(-110, -50) * motion.pace;
     petal.bloom = 0;
     petal.cooldown = 0.8;
     petals.push(petal);
@@ -287,19 +281,20 @@
   window.addEventListener('blur', leavePointer);
   window.addEventListener('click', spawnPetal);
 
-  window.addEventListener('resize', () => {
-    resize();
-    if (reducedMotion.matches) render();
+  window.addEventListener('resize', resize);
+
+  new MutationObserver(buildGradients).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme'],
   });
 
-  new MutationObserver(() => {
-    buildGradients();
-    if (reducedMotion.matches) render();
-  }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-
-  reducedMotion.addEventListener('change', start);
+  reducedMotion.addEventListener('change', () => {
+    motion = reducedMotion.matches ? CALM_MOTION : FULL_MOTION;
+    resize();
+  });
 
   buildGradients();
   resize();
-  start();
+  lastTime = performance.now();
+  requestAnimationFrame(tick);
 })();
