@@ -210,7 +210,61 @@
       </section>
     </main>
 
+    <aside class="now-playing" aria-label="Now playing">
+      <div class="now-playing-art" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false">
+          <path d="M9 18V5l12-2v13"/>
+          <circle cx="6" cy="18" r="3"/>
+          <circle cx="18" cy="16" r="3"/>
+        </svg>
+      </div>
+
+      <div class="now-playing-info">
+        <p class="now-playing-label">Now playing</p>
+        <p class="now-playing-title">Armed and Dangerous</p>
+        <p class="now-playing-artist">Juice WRLD</p>
+      </div>
+
+      <div class="now-playing-controls">
+        <button class="now-playing-toggle" type="button" aria-label="Play">
+          <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M8 5.5v13l10.5-6.5z"/>
+          </svg>
+          <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/>
+          </svg>
+        </button>
+        <button class="now-playing-close" type="button" aria-label="Stop and close">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M6 6l12 12M18 6L6 18"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="now-playing-progress">
+        <span class="now-playing-time">0:00</span>
+        <div class="now-playing-bar"><span></span></div>
+        <span class="now-playing-duration">2:50</span>
+      </div>
+
+      <p class="now-playing-credits">
+        Single · 2018 · Grade A / Interscope Records<br>
+        Produced by Dre Moon · Written by Jarad Higgins &amp; Andre Proctor
+      </p>
+
+      <p class="now-playing-rights">
+        All rights belong to Juice WRLD, Grade A and Interscope Records.
+        Listen on
+        <a href="https://open.spotify.com/album/0QlPckQjNQUY8WOXbi3Wc4" target="_blank" rel="noopener noreferrer">Spotify</a>
+        or
+        <a href="https://www.youtube.com/watch?v=cr82wSBZeeQ" target="_blank" rel="noopener noreferrer">YouTube</a>.
+      </p>
+
+      <audio class="now-playing-audio" src="audio/armed-and-dangerous.mp3" preload="none"></audio>
+    </aside>
+
     <script src="js/script.js"></script>
     <script src="js/sakura.js"></script>
+    <script src="js/music.js"></script>
   </body>
 </html>
