@@ -685,8 +685,24 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   border-radius: 14px;
   background: linear-gradient(180deg, #e9c8fa 0%, #d89ae9 100%);
+}
+
+.now-playing-cover {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.now-playing.has-cover .now-playing-cover {
+  display: block;
+}
+
+.now-playing.has-cover .now-playing-art svg {
+  display: none;
 }
 
 .now-playing-art svg {
