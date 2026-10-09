@@ -22,6 +22,7 @@
   const HOLD_LIMIT = 12;
   const FLICK_SPEED = 4000;
   const MAX_THROW = 1400;
+  const MAX_EXTRA = 80;
 
   // A single sakura petal drawn in unit space: narrow base at the bottom,
   // widest near the top, with the little notch at the tip.
@@ -40,6 +41,7 @@
   let gradients = [];
   let width = 0;
   let height = 0;
+  let targetCount = 0;
   let time = 0;
   let lastTime = 0;
   let frameId = 0;
@@ -57,8 +59,7 @@
     });
   };
 
-  const createPetal = (spawnAbove) => {
-    const depth = random(0.55, 1.15);
+  const createPetal = (spawnAbove, depth = random(0.55, 1.15)) => {
     const fall = random(30, 55) * depth;
     const spin = random(-1.2, 1.2);
 
@@ -85,6 +86,7 @@
       offsetX: 0,
       offsetY: 0,
       cooldown: 0,
+      bloom: 1,
     };
   };
 
@@ -96,9 +98,9 @@
     canvas.height = Math.round(height * ratio);
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
 
-    const count = Math.round(Math.min(55, Math.max(14, (width * height) / 30000)));
-    while (petals.length < count) petals.push(createPetal(false));
-    petals.length = count;
+    // Any surplus (from clicks or a smaller window) drains away as petals fall off screen.
+    targetCount = Math.round(Math.min(55, Math.max(14, (width * height) / 30000)));
+    while (petals.length < targetCount) petals.push(createPetal(false));
   };
 
   // Let go of a petal, throwing it in whatever direction the mouse was moving.
@@ -131,9 +133,11 @@
     const follow = 1 - Math.exp(-dt * 18);
     const pointerSpeed = Math.hypot(pointer.vx, pointer.vy);
     let heldCount = petals.filter((petal) => petal.held).length;
+    let removed = 0;
 
     petals.forEach((petal) => {
       petal.cooldown = Math.max(0, petal.cooldown - dt);
+      petal.bloom = Math.min(1, petal.bloom + dt * 4);
       petal.swayPhase += petal.swaySpeed * dt;
       petal.flip += petal.flipSpeed * dt;
 
@@ -177,13 +181,20 @@
       }
 
       if (petal.y > height + 40 || petal.y < -height) {
-        Object.assign(petal, createPetal(true));
+        if (petals.length - removed > targetCount) {
+          petal.removed = true;
+          removed += 1;
+        } else {
+          Object.assign(petal, createPetal(true));
+        }
       } else if (petal.x > width + 50) {
         petal.x = -50;
       } else if (petal.x < -50) {
         petal.x = width + 50;
       }
     });
+
+    if (removed > 0) petals = petals.filter((petal) => !petal.removed);
   };
 
   const render = () => {
@@ -192,11 +203,12 @@
     petals.forEach((petal) => {
       // Squash one axis as the petal tumbles so it looks like it is turning over.
       const turn = Math.max(0.12, Math.abs(Math.cos(petal.flip)));
+      const size = petal.size * (1 - (1 - petal.bloom) ** 3);
 
       ctx.save();
       ctx.translate(petal.x, petal.y);
       ctx.rotate(petal.rotation);
-      ctx.scale(petal.size * turn, petal.size);
+      ctx.scale(size * turn, size);
       ctx.globalAlpha = petal.alpha;
       ctx.fillStyle = gradients[petal.color];
       ctx.fill(petalPath);
@@ -247,6 +259,22 @@
     pointer.active = false;
   };
 
+  // Pop a new petal out wherever the page is clicked.
+  const spawnPetal = (event) => {
+    // Keyboard "clicks" have no real position, so skip them.
+    if (event.detail === 0 || reducedMotion.matches) return;
+    if (petals.length >= targetCount + MAX_EXTRA) return;
+
+    const petal = createPetal(false, random(0.95, 1.15));
+    petal.x = event.clientX;
+    petal.y = event.clientY;
+    petal.vx = random(-80, 80);
+    petal.vy = random(-110, -50);
+    petal.bloom = 0;
+    petal.cooldown = 0.8;
+    petals.push(petal);
+  };
+
   window.addEventListener('pointermove', movePointer, { passive: true });
   window.addEventListener('pointerdown', movePointer, { passive: true });
   window.addEventListener('pointerup', (event) => {
@@ -257,6 +285,7 @@
     if (!event.relatedTarget) leavePointer();
   });
   window.addEventListener('blur', leavePointer);
+  window.addEventListener('click', spawnPetal);
 
   window.addEventListener('resize', () => {
     resize();
