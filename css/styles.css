@@ -263,6 +263,8 @@ main {
 .panel {
   min-height: calc(100vh - 110px);
   padding-top: 2.2rem;
+  /* Jumping to a section (#home, #work...) stops below the sticky header, not behind it. */
+  scroll-margin-top: 110px;
 }
 
 /* Only as tall as the intro, so the work section is already in view when the site opens. */
@@ -865,6 +867,10 @@ main {
   .site-header {
     height: 86px;
     padding: 10px 10px 0 8px;
+  }
+
+  .panel {
+    scroll-margin-top: 86px;
   }
 
   .brand-wrap {
