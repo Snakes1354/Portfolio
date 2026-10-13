@@ -200,17 +200,75 @@
           </article>
 
           <article class="project-card">
-            <div class="project-preview preview-four" aria-hidden="true">
-              <svg viewBox="0 0 240 150" class="project-svg" aria-hidden="true">
-                <g fill="none" stroke="#1d1920" stroke-width="1.5">
-                  <rect x="36" y="38" width="46" height="24" rx="4"/>
-                  <rect x="96" y="38" width="46" height="24" rx="4"/>
-                  <rect x="156" y="38" width="46" height="24" rx="4"/>
-                  <path d="M80 50h16M140 50h16M60 62v28m46-28v28m46-28v28m46-28v28m-46 0H106m0 0H60m0 0h46m44 0h40m-40 0V62m40 0v28"/>
-                  <rect x="52" y="95" width="58" height="18" rx="4"/>
-                  <rect x="122" y="95" width="60" height="18" rx="4"/>
-                </g>
-              </svg>
+            <div class="project-preview preview-four code-preview" aria-hidden="true">
+              <pre><code><span class="c-keyword">using</span> <span class="c-type">UnityEngine</span>;
+<span class="c-keyword">using</span> <span class="c-type">System</span>.<span class="c-type">Collections</span>;
+<span class="c-keyword">using</span> <span class="c-type">System</span>.<span class="c-type">Collections</span>.<span class="c-type">Generic</span>;
+<span class="c-keyword">using</span> <span class="c-type">UnityEngine</span>.<span class="c-type">AI</span>;
+
+<span class="c-keyword">public</span> <span class="c-keyword">class</span> <span class="c-type">Actor</span> : <span class="c-type">MonoBehaviour</span>
+{
+
+    <span class="c-comment">// VARIABLES</span>
+    [<span class="c-type">SerializeField</span>] <span class="c-keyword">private</span> <span class="c-keyword">float</span> <span class="c-name">attackCD</span> = <span class="c-number">3f</span>;
+    [<span class="c-type">SerializeField</span>] <span class="c-keyword">private</span> <span class="c-keyword">float</span> <span class="c-name">attackRange</span> = <span class="c-number">1f</span>;
+    [<span class="c-type">SerializeField</span>] <span class="c-keyword">private</span> <span class="c-keyword">float</span> <span class="c-name">aggroRange</span> = <span class="c-number">4f</span>;
+    [<span class="c-type">SerializeField</span>] <span class="c-keyword">private</span> <span class="c-keyword">int</span> <span class="c-type">CurrentHealth</span> = <span class="c-number">2</span>;
+    [<span class="c-type">SerializeField</span>] <span class="c-keyword">private</span> <span class="c-keyword">int</span> <span class="c-type">MaxHealth</span> = <span class="c-number">3</span>;
+    [<span class="c-type">SerializeField</span>] <span class="c-keyword">private</span> <span class="c-keyword">int</span> <span class="c-type">ExpAmount</span>;
+    <span class="c-keyword">public</span> <span class="c-keyword">float</span> <span class="c-type">DropChance</span> = <span class="c-number">1</span>;
+
+    <span class="c-keyword">private</span> <span class="c-keyword">float</span> <span class="c-name">timePassed</span>;
+    <span class="c-keyword">private</span> <span class="c-keyword">float</span> <span class="c-name">newDestinationCD</span> = <span class="c-number">0.5f</span>;
+
+    [<span class="c-type">Header</span>(<span class="c-string">&quot;Assign in inspector&quot;</span>)]
+    <span class="c-keyword">public</span> <span class="c-type">GameObject</span> <span class="c-type">Chest</span>;
+    <span class="c-keyword">public</span> <span class="c-type">NavMeshAgent</span> <span class="c-name">agent</span>;
+    <span class="c-keyword">public</span> <span class="c-type">Animator</span> <span class="c-name">animator</span>;
+    <span class="c-keyword">public</span> <span class="c-type">GameObject</span> <span class="c-name">player</span>;
+    <span class="c-keyword">public</span> <span class="c-type">FloatingHealthBar</span> <span class="c-name">healthBar</span>;
+
+
+    <span class="c-keyword">private</span> <span class="c-keyword">void</span> <span class="c-type">Start</span>()
+    {
+        <span class="c-name">animator</span> = <span class="c-type">GetComponent</span>&lt;<span class="c-type">Animator</span>&gt;(); <span class="c-comment">// Finds where the animator component is</span>
+        <span class="c-name">agent</span> = <span class="c-type">GetComponent</span>&lt;<span class="c-type">NavMeshAgent</span>&gt;(); <span class="c-comment">// Finds where the agent component is</span>
+        <span class="c-name">player</span> = <span class="c-type">GameObject</span>.<span class="c-type">FindWithTag</span>(<span class="c-string">&quot;Player&quot;</span>); <span class="c-comment">// Find where the gameobject player with the tag player is</span>
+        <span class="c-name">healthBar</span>.<span class="c-type">UpdateHealthBar</span>(<span class="c-type">CurrentHealth</span>, <span class="c-type">MaxHealth</span>); <span class="c-comment">// Updates the health bar at the start</span>
+    }
+
+    <span class="c-keyword">private</span> <span class="c-keyword">void</span> <span class="c-type">Update</span>()
+    {
+        <span class="c-name">animator</span>.<span class="c-type">SetFloat</span>(<span class="c-string">&quot;speed&quot;</span>, <span class="c-name">agent</span>.<span class="c-name">velocity</span>.<span class="c-name">magnitude</span> / <span class="c-name">agent</span>.<span class="c-name">speed</span>); <span class="c-comment">// Enables the float speed in the animator controller</span>
+
+        <span class="c-keyword">if</span>(<span class="c-name">timePassed</span> &gt;= <span class="c-name">attackCD</span>) <span class="c-comment">// Checks if the cooldown is over</span>
+        {
+            <span class="c-keyword">if</span> (<span class="c-type">Vector3</span>.<span class="c-type">Distance</span>(<span class="c-name">player</span>.<span class="c-name">transform</span>.<span class="c-name">position</span>, <span class="c-name">transform</span>.<span class="c-name">position</span>) &lt;= <span class="c-name">aggroRange</span>)
+            {
+                <span class="c-name">animator</span>.<span class="c-type">SetTrigger</span>(<span class="c-string">&quot;attack&quot;</span>); <span class="c-comment">// Changes the animaton to attack</span>
+                <span class="c-name">timePassed</span> = <span class="c-number">0</span>;
+            }
+        }
+        <span class="c-name">timePassed</span> += <span class="c-type">Time</span>.<span class="c-name">deltaTime</span>;
+
+        <span class="c-keyword">if</span> (<span class="c-name">newDestinationCD</span> &lt;= <span class="c-number">0</span> &amp;&amp; <span class="c-type">Vector3</span>.<span class="c-type">Distance</span>(<span class="c-name">player</span>.<span class="c-name">transform</span>.<span class="c-name">position</span>, <span class="c-name">transform</span>.<span class="c-name">position</span>) &lt;= <span class="c-name">aggroRange</span>)
+        {
+            <span class="c-name">newDestinationCD</span> = <span class="c-number">0.5f</span>;
+            <span class="c-name">agent</span>.<span class="c-type">SetDestination</span>(<span class="c-name">player</span>.<span class="c-name">transform</span>.<span class="c-name">position</span>);
+        }
+        <span class="c-name">newDestinationCD</span> -= <span class="c-type">Time</span>.<span class="c-name">deltaTime</span>;
+        <span class="c-comment">//transform.LookAt(player.transform);</span>
+    }
+
+
+    <span class="c-keyword">void</span> <span class="c-type">Awake</span>()
+    {
+        <span class="c-type">CurrentHealth</span> = <span class="c-type">MaxHealth</span>;
+        <span class="c-comment">// Sets hp at the start.</span>
+
+        <span class="c-name">healthBar</span> = <span class="c-type">GetComponentInChildren</span>&lt;<span class="c-type">FloatingHealthBar</span>&gt;(); <span class="c-comment">// Finds the health bar script</span>
+    }
+}</code></pre>
             </div>
             <div class="project-label">Text example</div>
             <a class="project-link" href="projects/project-4.html">View Project <span>→</span></a>
