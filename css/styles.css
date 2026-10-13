@@ -754,6 +754,19 @@ main {
   fill: currentColor;
 }
 
+/* Only shown for playlists with more than one song. */
+.now-playing-controls .now-playing-skip {
+  display: none;
+}
+
+.now-playing.has-queue .now-playing-skip {
+  display: inline-flex;
+}
+
+.now-playing-skip svg {
+  fill: currentColor;
+}
+
 .now-playing-close svg {
   fill: none;
   stroke: currentColor;

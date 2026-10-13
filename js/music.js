@@ -3,46 +3,119 @@
   const audio = card && card.querySelector('.now-playing-audio');
   if (!audio) return;
 
-  // Typing a song's secret anywhere on the page plays it. Only one song plays at a time.
-  const TRACKS = [
+  // Typing a playlist's secret anywhere on the page plays it. Only one song plays at a time.
+  const PLAYLISTS = [
     {
       secret: 'juice',
-      src: 'audio/armed-and-dangerous.mp3',
-      cover: 'images/armed-and-dangerous.jpg',
-      title: 'Armed and Dangerous',
-      artist: 'Juice WRLD',
-      album: 'Armed and Dangerous (Single, 2018)',
-      length: '2:50',
-      credits: [
-        'Single · 2018 · Grade A / Interscope Records',
-        'Produced by Dre Moon · Written by Jarad Higgins & Andre Proctor',
+      tracks: [
+        {
+          src: 'audio/armed-and-dangerous.mp3',
+          cover: 'images/armed-and-dangerous.jpg',
+          title: 'Armed and Dangerous',
+          artist: 'Juice WRLD',
+          album: 'Armed and Dangerous (Single, 2018)',
+          length: '2:50',
+          credits: [
+            'Single · 2018 · Grade A / Interscope Records',
+            'Produced by Dre Moon · Written by Jarad Higgins & Andre Proctor',
+          ],
+          owners: 'Juice WRLD, Grade A and Interscope Records',
+          spotify: 'https://open.spotify.com/album/0QlPckQjNQUY8WOXbi3Wc4',
+          youtube: 'https://www.youtube.com/watch?v=cr82wSBZeeQ',
+        },
       ],
-      owners: 'Juice WRLD, Grade A and Interscope Records',
-      spotify: 'https://open.spotify.com/album/0QlPckQjNQUY8WOXbi3Wc4',
-      youtube: 'https://www.youtube.com/watch?v=cr82wSBZeeQ',
     },
     {
       secret: 'don',
-      src: 'audio/e85.mp3',
-      cover: 'images/octane.jpg',
-      title: 'E85',
-      artist: 'Don Toliver',
-      album: 'OCTANE (2026)',
-      length: '2:33',
-      credits: [
-        'OCTANE · 2026 · Donnway & Co / Cactus Jack / Atlantic Records',
-        'Produced by Travis Scott, Aaron Paris, 206Derek & Jaasu',
-        'Written by Caleb Toliver, Jacques Webster II, Aaron Cheung, Derek Anderson, '
-          + 'Jaasu Mallory, Malcolm Hobert, Charles Ziman & Jonah Cochran',
-        'Contains a sample of “Chest Pain (I Love)” by Malcolm Todd',
+      tracks: [
+        {
+          src: 'audio/e85.mp3',
+          cover: 'images/octane.jpg',
+          title: 'E85',
+          artist: 'Don Toliver',
+          album: 'OCTANE (2026)',
+          length: '2:33',
+          credits: [
+            'OCTANE · 2026 · Donnway & Co / Cactus Jack / Atlantic Records',
+            'Produced by Travis Scott, Aaron Paris, 206Derek & Jaasu',
+            'Written by Caleb Toliver, Jacques Webster II, Aaron Cheung, Derek Anderson, '
+              + 'Jaasu Mallory, Malcolm Hobert, Charles Ziman & Jonah Cochran',
+            'Contains a sample of “Chest Pain (I Love)” by Malcolm Todd',
+          ],
+          owners: 'Don Toliver, Donnway & Co, Cactus Jack and Atlantic Records',
+          spotify: 'https://open.spotify.com/album/131x9G87mD0hP0hGZc9qYN',
+          youtube: 'https://www.youtube.com/watch?v=rVD-zV6ctoM',
+        },
+        {
+          src: 'audio/no-pole.mp3',
+          cover: 'images/love-sick.jpg',
+          title: 'No Pole',
+          artist: 'Don Toliver',
+          album: 'Love Sick (Deluxe) (2023)',
+          length: '3:07',
+          credits: [
+            'Love Sick (Deluxe) · 2023 · Cactus Jack / Atlantic Records',
+            'Produced by Cardo & DJ Fresh',
+            'Written by Caleb Toliver, Ronald LaTour Jr., Marqus Brown & Douglas Ford',
+          ],
+          owners: 'Don Toliver, Cactus Jack and Atlantic Records',
+          spotify: 'https://open.spotify.com/album/2Q2TRdT994vTzGE3Grmmht',
+          youtube: 'https://www.youtube.com/watch?v=A5mURRozXtg',
+        },
+        {
+          src: 'audio/secondhand.mp3',
+          cover: 'images/octane.jpg',
+          title: 'Secondhand',
+          artist: 'Don Toliver ft. Rema',
+          album: 'OCTANE (2026)',
+          length: '3:46',
+          credits: [
+            'OCTANE · 2026 · Donnway & Co / Cactus Jack / Atlantic Records',
+            'Produced by 206Derek, Roark Bailey & Gabe Shaddow',
+            'Written by Caleb Toliver, Divine Ikubor, Derek Anderson, Roark Bailey & Gabe Shaddow',
+          ],
+          owners: 'Don Toliver, Rema, Donnway & Co, Cactus Jack and Atlantic Records',
+          spotify: 'https://open.spotify.com/album/131x9G87mD0hP0hGZc9qYN',
+          youtube: 'https://www.youtube.com/results?search_query=Don+Toliver+Rema+Secondhand',
+        },
+        {
+          src: 'audio/cardigan.mp3',
+          cover: 'images/heaven-or-hell.jpg',
+          title: 'Cardigan',
+          artist: 'Don Toliver',
+          album: 'Heaven or Hell (2020)',
+          length: '2:38',
+          credits: [
+            'Heaven or Hell · 2020 · Cactus Jack / We Run It / Atlantic Records',
+            'Produced by Sonny Digital, Frank Dukes, CVRE & MIDO',
+            'Written by Caleb Toliver, Sonny Uwaezuoke, Adam Feeney & Mike Dean',
+          ],
+          owners: 'Don Toliver, Cactus Jack, We Run It Entertainment and Atlantic Records',
+          spotify: 'https://open.spotify.com/album/7z4GhRfLqfSkqrj5F3Yt2B',
+          youtube: 'https://www.youtube.com/results?search_query=Don+Toliver+Cardigan+Official+Music+Video',
+        },
+        {
+          src: 'audio/no-idea.mp3',
+          cover: 'images/heaven-or-hell.jpg',
+          title: 'No Idea',
+          artist: 'Don Toliver',
+          album: 'Heaven or Hell (2020)',
+          length: '2:45',
+          credits: [
+            'Heaven or Hell · 2020 · Cactus Jack / We Run It / Atlantic Records',
+            'Produced by WondaGurl & Cubeatz',
+            'Written by Caleb Toliver, Ebony Oshunrinde, Tim Gomringer & Kevin Gomringer',
+          ],
+          owners: 'Don Toliver, Cactus Jack, We Run It Entertainment and Atlantic Records',
+          spotify: 'https://open.spotify.com/album/7z4GhRfLqfSkqrj5F3Yt2B',
+          youtube: 'https://www.youtube.com/results?search_query=Don+Toliver+No+Idea+Official+Video',
+        },
       ],
-      owners: 'Don Toliver, Donnway & Co, Cactus Jack and Atlantic Records',
-      spotify: 'https://open.spotify.com/album/131x9G87mD0hP0hGZc9qYN',
-      youtube: 'https://www.youtube.com/watch?v=rVD-zV6ctoM',
     },
   ];
 
   const toggleButton = card.querySelector('.now-playing-toggle');
+  const skipButton = card.querySelector('.now-playing-skip');
   const closeButton = card.querySelector('.now-playing-close');
   const cover = card.querySelector('.now-playing-cover');
   const label = card.querySelector('.now-playing-label');
@@ -53,8 +126,9 @@
   const bar = card.querySelector('.now-playing-bar span');
   const timeLabel = card.querySelector('.now-playing-time');
   const durationLabel = card.querySelector('.now-playing-duration');
-  const longestSecret = Math.max(...TRACKS.map((track) => track.secret.length));
-  let current = null;
+  const longestSecret = Math.max(...PLAYLISTS.map((playlist) => playlist.secret.length));
+  let playlist = null;
+  let index = 0;
   let typed = '';
 
   audio.volume = 0.6;
@@ -77,9 +151,15 @@
   cover.addEventListener('load', () => card.classList.add('has-cover'));
   cover.addEventListener('error', () => card.classList.remove('has-cover'));
 
-  const load = (track) => {
-    current = track;
+  const load = (nextPlaylist, nextIndex) => {
+    const track = nextPlaylist.tracks[nextIndex];
+    playlist = nextPlaylist;
+    index = nextIndex;
     audio.src = track.src;
+
+    // Only playlists with more than one song get a skip button.
+    const hasQueue = playlist.tracks.length > 1;
+    card.classList.toggle('has-queue', hasQueue);
 
     card.classList.remove('has-cover');
     cover.src = track.cover;
@@ -108,6 +188,7 @@
         album: track.album,
         artwork: [{ src: new URL(track.cover, document.baseURI).href }],
       });
+      navigator.mediaSession.setActionHandler('nexttrack', hasQueue ? () => skip() : null);
     }
   };
 
@@ -126,11 +207,18 @@
     }
   };
 
-  // Typing the playing song's secret again pauses or resumes it; another song's secret switches to it.
-  const choose = (track) => {
-    if (track !== current) {
+  // Move on to the playlist's next song, back to the first after the last.
+  const skip = () => {
+    audio.pause();
+    load(playlist, (index + 1) % playlist.tracks.length);
+    play();
+  };
+
+  // Typing the playing playlist's secret again pauses or resumes it; another secret switches to it.
+  const choose = (nextPlaylist) => {
+    if (nextPlaylist !== playlist) {
       audio.pause();
-      load(track);
+      load(nextPlaylist, 0);
       play();
       return;
     }
@@ -168,7 +256,13 @@
     timeLabel.textContent = formatTime(audio.currentTime);
   });
 
+  // A playlist carries on to its next song by itself.
+  audio.addEventListener('ended', () => {
+    if (playlist.tracks.length > 1) skip();
+  });
+
   toggleButton.addEventListener('click', toggle);
+  skipButton.addEventListener('click', skip);
   closeButton.addEventListener('click', close);
 
   document.addEventListener('keydown', (event) => {
@@ -176,7 +270,7 @@
     if (event.target instanceof Element && event.target.closest('input, textarea, select, [contenteditable]')) return;
 
     typed = (typed + event.key.toLowerCase()).slice(-longestSecret);
-    const match = TRACKS.find((track) => typed.endsWith(track.secret));
+    const match = PLAYLISTS.find((candidate) => typed.endsWith(candidate.secret));
 
     if (match) {
       typed = '';
@@ -189,5 +283,5 @@
     navigator.mediaSession.setActionHandler('pause', () => audio.pause());
   }
 
-  load(TRACKS[0]);
+  load(PLAYLISTS[0], 0);
 })();
