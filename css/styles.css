@@ -272,13 +272,17 @@ main {
   align-items: center;
   justify-content: center;
   min-height: 0;
-  padding: clamp(2.5rem, 9vh, 6rem) 0 clamp(1.5rem, 5vh, 3.5rem);
+  /* Same space above the card as below it, counting the work section's own top padding. */
+  padding: clamp(2rem, 7vh, 4.5rem) 0 clamp(0.8rem, calc(7vh - 1.2rem), 3.3rem);
 }
 
 .hero-card {
   width: min(760px, 72vw);
   min-height: 235px;
-  padding: 2.4rem 2.8rem 2.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.25rem 2.8rem;
   border: 4px solid var(--outline);
   border-radius: 22px;
   background: var(--card-bg);
@@ -892,7 +896,7 @@ main {
 
   .hero-card {
     width: min(92vw, 680px);
-    padding: 2rem 1.1rem 1.3rem;
+    padding: 1.65rem 1.1rem;
   }
 
   .project-grid {
