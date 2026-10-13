@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#43006c">
     <title>Portfolio | Daniel Worden</title>
     <meta name="description" content="Daniel Worden portfolio homepage">
-    <link rel="stylesheet" href="css/styles.css?v=20261013f">
+    <link rel="stylesheet" href="css/styles.css?v=20261013g">
   </head>
   <body>
     <canvas class="sakura-canvas" aria-hidden="true"></canvas>
@@ -49,34 +49,84 @@
 
         <div class="project-grid" aria-label="Programming work examples">
           <article class="project-card">
-            <div class="project-preview preview-one" aria-hidden="true">
-              <svg viewBox="0 0 240 150" class="project-svg" aria-hidden="true">
-                <g fill="none" stroke="#1d1920" stroke-width="1.5">
-                  <rect x="38" y="42" width="42" height="22" rx="4"/>
-                  <rect x="96" y="42" width="42" height="22" rx="4"/>
-                  <rect x="154" y="42" width="42" height="22" rx="4"/>
-                  <path d="M77 54h17M136 54h17M58 64v26m42-26v26m42-26v26m42-26v26m-42 0H100m0 0H58m0 0h42m42 0h42m-42 0V64m42 0v26"/>
-                  <rect x="58" y="95" width="46" height="18" rx="4"/>
-                  <rect x="120" y="95" width="60" height="18" rx="4"/>
-                </g>
-              </svg>
+            <div class="project-preview preview-one code-preview" aria-hidden="true">
+              <pre><code><span class="c-keyword">using</span> <span class="c-type">UnityEngine</span>;
+<span class="c-keyword">using</span> <span class="c-type">TMPro</span>;
+
+<span class="c-keyword">public</span> <span class="c-keyword">class</span> <span class="c-type">UpgradeStat</span> : <span class="c-type">MonoBehaviour</span>
+{
+    <span class="c-keyword">public</span> <span class="c-type">TMP_InputField</span> <span class="c-type">AmountStats</span>;
+
+    <span class="c-keyword">public</span> <span class="c-type">ChestOpen</span> <span class="c-name">chestOpen</span>;
+
+    <span class="c-keyword">public</span> <span class="c-keyword">void</span> <span class="c-type">UpdateDamage</span>()
+    {
+        <span class="c-keyword">if</span> (<span class="c-keyword">int</span>.<span class="c-type">TryParse</span>(<span class="c-type">AmountStats</span>.<span class="c-name">text</span>, <span class="c-keyword">out</span> <span class="c-keyword">int</span> <span class="c-name">amount</span>))
+        {
+            <span class="c-keyword">if</span> (<span class="c-type">StatsUI</span>.<span class="c-type">Points</span> &gt;= <span class="c-name">amount</span>) <span class="c-comment">// Checks to see if you have atleast one point</span>
+            {
+                <span class="c-name">chestOpen</span>.<span class="c-name">initialDamage</span> += <span class="c-number">1</span> * <span class="c-name">amount</span>;
+                <span class="c-type">StatManager</span>.<span class="c-type">Instance</span>.<span class="c-name">damage</span> += <span class="c-number">1</span> * <span class="c-name">amount</span>;<span class="c-comment">// Goes to your statmanager script and adds + 1 to your speed variable</span>
+                <span class="c-type">StatsUI</span>.<span class="c-type">Points</span> -= <span class="c-name">amount</span>;
+            }
+        }
+    }
+
+    <span class="c-keyword">public</span> <span class="c-keyword">void</span> <span class="c-type">UpdateSpeed</span>()
+    {
+        <span class="c-keyword">if</span> (<span class="c-keyword">int</span>.<span class="c-type">TryParse</span>(<span class="c-type">AmountStats</span>.<span class="c-name">text</span>, <span class="c-keyword">out</span> <span class="c-keyword">int</span> <span class="c-name">amount</span>))
+        {
+            <span class="c-keyword">if</span> (<span class="c-type">StatsUI</span>.<span class="c-type">Points</span> &gt;= <span class="c-name">amount</span>) <span class="c-comment">// Checks to see if you have atleast one point</span>
+            {
+                <span class="c-name">chestOpen</span>.<span class="c-name">initialSpeed</span> += <span class="c-number">1</span> * <span class="c-name">amount</span>;
+                <span class="c-type">StatManager</span>.<span class="c-type">Instance</span>.<span class="c-type">MovementSpeed</span> += <span class="c-number">1</span> * <span class="c-name">amount</span>;<span class="c-comment">// Goes to your statmanager script and adds + 1 to your speed variable</span>
+                <span class="c-type">StatsUI</span>.<span class="c-type">Points</span> -= <span class="c-name">amount</span>;
+            }
+        }
+    }
+
+    <span class="c-keyword">public</span> <span class="c-keyword">void</span> <span class="c-type">UpdateHealth</span>()
+    {
+        <span class="c-keyword">if</span> (<span class="c-keyword">int</span>.<span class="c-type">TryParse</span>(<span class="c-type">AmountStats</span>.<span class="c-name">text</span>, <span class="c-keyword">out</span> <span class="c-keyword">int</span> <span class="c-name">amount</span>))
+        {
+            <span class="c-keyword">if</span> (<span class="c-type">StatsUI</span>.<span class="c-type">Points</span> &gt;= <span class="c-name">amount</span>) <span class="c-comment">// Checks to see if you have atleast one point</span>
+            {
+                <span class="c-type">PlayerStats</span>.<span class="c-type">Instance</span>.<span class="c-name">maxHealth</span> += <span class="c-number">10</span> * <span class="c-name">amount</span>; <span class="c-comment">// Goes to your statmanager script and adds + 10 to your maxhealth variable</span>
+                <span class="c-type">PlayerStats</span>.<span class="c-type">Instance</span>.<span class="c-name">currentHealth</span> += <span class="c-number">10</span> * <span class="c-name">amount</span>; <span class="c-comment">// Goes to your statmanager script and adds + 10 to your currenthealth variable</span>
+                <span class="c-name">chestOpen</span>.<span class="c-name">initialHealth</span> += <span class="c-number">10</span> * <span class="c-name">amount</span>;
+                <span class="c-type">PlayerStats</span>.<span class="c-type">Instance</span>.<span class="c-name">healthBar</span>.<span class="c-type">SetSliderMax</span>(<span class="c-type">PlayerStats</span>.<span class="c-type">Instance</span>.<span class="c-name">maxHealth</span>); <span class="c-comment">// Updates the slider max to make it so you can have more health</span>
+                <span class="c-type">PlayerStats</span>.<span class="c-type">Instance</span>.<span class="c-name">healthBar</span>.<span class="c-type">SetSlider</span>(<span class="c-type">PlayerStats</span>.<span class="c-type">Instance</span>.<span class="c-name">currentHealth</span>); <span class="c-comment">// Updates the currenthealth variable from the playerstats script</span>
+                <span class="c-type">StatsUI</span>.<span class="c-type">Points</span> -= <span class="c-name">amount</span>;
+            }
+        }
+
+    }
+}</code></pre>
             </div>
             <div class="project-label">UpgradeStats System</div>
             <a class="project-link" href="projects/project-1.html">View Project <span>→</span></a>
           </article>
 
           <article class="project-card">
-            <div class="project-preview preview-two" aria-hidden="true">
-              <svg viewBox="0 0 240 150" class="project-svg" aria-hidden="true">
-                <g fill="none" stroke="#1d1920" stroke-width="1.5">
-                  <rect x="38" y="40" width="44" height="24" rx="4"/>
-                  <rect x="96" y="40" width="44" height="24" rx="4"/>
-                  <rect x="154" y="40" width="44" height="24" rx="4"/>
-                  <path d="M80 52h14M140 52h14M60 64v28m44-28v28m44-28v28m44-28v28m-44 0H100m0 0H60m0 0h40m44 0h40m-40 0V64m40 0v28"/>
-                  <rect x="56" y="95" width="60" height="18" rx="4"/>
-                  <rect x="128" y="95" width="54" height="18" rx="4"/>
-                </g>
-              </svg>
+            <div class="project-preview preview-two code-preview" aria-hidden="true">
+              <pre><code><span class="c-keyword">using</span> <span class="c-type">UnityEngine</span>;
+
+<span class="c-keyword">public</span> <span class="c-keyword">class</span> <span class="c-type">Blocker1</span> : <span class="c-type">MonoBehaviour</span>
+{
+
+    <span class="c-keyword">public</span> <span class="c-type">GameObject</span> <span class="c-name">blocker1</span>;
+    <span class="c-keyword">public</span> <span class="c-type">GameObject</span> <span class="c-type">Gate</span>;
+
+    <span class="c-keyword">void</span> <span class="c-type">OnTriggerEnter</span>(<span class="c-type">Collider</span> <span class="c-name">collision</span>)
+    {
+        <span class="c-keyword">if</span>(!<span class="c-name">collision</span>.<span class="c-type">CompareTag</span>(<span class="c-string">&quot;Player&quot;</span>)) <span class="c-keyword">return</span>;
+        {
+            <span class="c-type">Gate</span>.<span class="c-type">SetActive</span>(<span class="c-number">false</span>);
+            <span class="c-name">blocker1</span>.<span class="c-type">SetActive</span>(<span class="c-number">true</span>);
+        }
+    }
+
+}</code></pre>
             </div>
             <div class="project-label">Text example</div>
             <a class="project-link" href="projects/project-2.html">View Project <span>→</span></a>
@@ -256,9 +306,9 @@
       <audio class="now-playing-audio" preload="none"></audio>
     </aside>
 
-    <script src="js/theme.js?v=20261013f"></script>
-    <script src="js/script.js?v=20261013f"></script>
-    <script src="js/sakura.js?v=20261013f"></script>
-    <script src="js/music.js?v=20261013f"></script>
+    <script src="js/theme.js?v=20261013g"></script>
+    <script src="js/script.js?v=20261013g"></script>
+    <script src="js/sakura.js?v=20261013g"></script>
+    <script src="js/music.js?v=20261013g"></script>
   </body>
 </html>
