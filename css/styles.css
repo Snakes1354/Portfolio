@@ -312,38 +312,8 @@ main {
   text-shadow: 0 0 8px var(--purple), 0 0 18px var(--purple);
 }
 
-.view-work {
-  display: inline-block;
-  margin-top: 2rem;
-  color: #ffb7c5;
-  text-decoration: none;
-  font-size: clamp(1.8rem, 2vw, 2.8rem);
-  line-height: 1;
-  letter-spacing: -0.05em;
-  font-weight: 500;
-  text-shadow: 0 0 12px rgba(255, 213, 255, 0.18);
-  transition: transform 180ms ease, text-shadow 180ms ease;
-}
-
-.view-work:hover,
-.view-work:focus-visible {
-  transform: translateY(-4px) scale(1.04);
-  text-shadow: 0 0 16px rgba(255, 183, 197, 0.8), 0 0 28px rgba(255, 183, 197, 0.5);
-}
-
 :root[data-theme="light"] .hero-card h1 span {
   color: var(--purple);
-}
-
-:root[data-theme="light"] .view-work {
-  color: var(--purple);
-  text-shadow: 0 0 8px rgba(99, 52, 130, 0.65), 0 0 18px rgba(99, 52, 130, 0.35);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .view-work {
-    transition: none;
-  }
 }
 
 .work-panel {
@@ -981,8 +951,6 @@ main {
     transform: none;
   }
 
-  .view-work:hover,
-  .view-work:focus-visible,
   .home-button:hover,
   .home-button:focus-visible,
   .nav-link:hover,
