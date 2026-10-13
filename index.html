@@ -133,17 +133,67 @@
           </article>
 
           <article class="project-card">
-            <div class="project-preview preview-three" aria-hidden="true">
-              <svg viewBox="0 0 240 150" class="project-svg" aria-hidden="true">
-                <g fill="none" stroke="#1d1920" stroke-width="1.5">
-                  <rect x="36" y="38" width="42" height="22" rx="4"/>
-                  <rect x="96" y="38" width="42" height="22" rx="4"/>
-                  <rect x="156" y="38" width="42" height="22" rx="4"/>
-                  <path d="M80 50h16M138 50h16M58 62v26m42-26v26m42-26v26m42-26v26m-42 0H100m0 0H58m0 0h42m42 0h42m-42 0V62m42 0v26"/>
-                  <rect x="54" y="94" width="52" height="18" rx="4"/>
-                  <rect x="118" y="94" width="52" height="18" rx="4"/>
-                </g>
-              </svg>
+            <div class="project-preview preview-three code-preview" aria-hidden="true">
+              <pre><code><span class="c-keyword">using</span> <span class="c-type">UnityEngine</span>;
+<span class="c-keyword">using</span> <span class="c-type">UnityEngine</span>.<span class="c-type">SceneManagement</span>;
+
+<span class="c-keyword">public</span> <span class="c-keyword">class</span> <span class="c-type">PlayerStats</span> : <span class="c-type">MonoBehaviour</span>
+{
+
+    <span class="c-keyword">public</span> <span class="c-keyword">static</span> <span class="c-type">PlayerStats</span> <span class="c-type">Instance</span>;
+    <span class="c-comment">// I used a static so that my playerstats can be accessed from other scripts.</span>
+
+    <span class="c-comment">// VARIABLES</span>
+    <span class="c-keyword">public</span> <span class="c-keyword">float</span> <span class="c-name">maxHealth</span> = <span class="c-number">100f</span>;
+    <span class="c-keyword">public</span> <span class="c-keyword">float</span> <span class="c-name">currentHealth</span>;
+    <span class="c-keyword">public</span> <span class="c-keyword">float</span> <span class="c-type">MaxHealth</span> =&gt; <span class="c-name">maxHealth</span>;
+    <span class="c-keyword">public</span> <span class="c-keyword">float</span> <span class="c-type">CurrentHealth</span> =&gt; <span class="c-name">currentHealth</span>;
+
+    <span class="c-keyword">public</span> <span class="c-type">HealthBar</span> <span class="c-name">healthBar</span>; <span class="c-comment">// Lets you assign a healthbar in the inspector</span>
+
+    <span class="c-keyword">private</span> <span class="c-keyword">void</span> <span class="c-type">Start</span>()
+    {
+        <span class="c-name">currentHealth</span> = <span class="c-name">maxHealth</span>;
+        <span class="c-name">healthBar</span>.<span class="c-type">SetSliderMax</span>(<span class="c-name">maxHealth</span>);
+        <span class="c-comment">// At the start of the game the current health is set to the max health</span>
+    }
+    <span class="c-keyword">private</span> <span class="c-keyword">void</span> <span class="c-type">Update</span>()
+    {
+        <span class="c-keyword">if</span> (<span class="c-name">currentHealth</span> &gt; <span class="c-name">maxHealth</span>)
+            <span class="c-name">currentHealth</span> = <span class="c-name">maxHealth</span>;
+        <span class="c-keyword">if</span> (<span class="c-name">currentHealth</span> &lt;= <span class="c-number">0</span>)
+            <span class="c-type">Die</span>();
+        <span class="c-comment">// Makes it so if current health reachs bellow 0 or 0 you die</span>
+    }
+    <span class="c-keyword">public</span> <span class="c-keyword">void</span> <span class="c-type">TakeDamage</span>(<span class="c-keyword">float</span> <span class="c-name">amount</span>)
+    {
+        <span class="c-name">currentHealth</span> -= <span class="c-name">amount</span>;
+        <span class="c-name">healthBar</span>.<span class="c-type">SetSlider</span>(<span class="c-name">currentHealth</span>);
+        <span class="c-comment">// This method is used to update the healthbar and is used to take damage</span>
+
+    }
+    <span class="c-keyword">public</span> <span class="c-keyword">void</span> <span class="c-type">HealPlayer</span>(<span class="c-keyword">float</span> <span class="c-name">amount</span>)
+    {
+        <span class="c-name">currentHealth</span> += <span class="c-name">amount</span>;
+        <span class="c-name">healthBar</span>.<span class="c-type">SetSlider</span>(<span class="c-name">currentHealth</span>);
+        <span class="c-comment">// This method is used to heal the player and update the health bar</span>
+    }
+    <span class="c-keyword">private</span> <span class="c-keyword">void</span> <span class="c-type">Die</span>()
+    {
+        <span class="c-type">UnityEngine</span>.<span class="c-type">SceneManagement</span>.<span class="c-type">SceneManager</span>.<span class="c-type">LoadScene</span>(<span class="c-string">&quot;End Menu&quot;</span>); <span class="c-comment">// Goes to my End Menu scene</span>
+        <span class="c-type">Cursor</span>.<span class="c-name">visible</span> = <span class="c-number">true</span>; <span class="c-comment">// Sets my cursor visiblity to true</span>
+        <span class="c-type">Cursor</span>.<span class="c-name">lockState</span> = <span class="c-type">CursorLockMode</span>.<span class="c-type">None</span>; <span class="c-comment">// This unlocks my cursor</span>
+    }
+
+    <span class="c-keyword">private</span> <span class="c-keyword">void</span> <span class="c-type">Awake</span>()
+    {
+        <span class="c-keyword">if</span>(<span class="c-type">Instance</span> == <span class="c-number">null</span>)
+        <span class="c-type">Instance</span> = <span class="c-keyword">this</span>;
+        <span class="c-keyword">else</span>
+        <span class="c-type">Destroy</span>(<span class="c-name">gameObject</span>); <span class="c-comment">// Destroys the gameobject</span>
+        <span class="c-comment">// Makes it so that there can&#x27;t be more than one playerstats in my game.</span>
+    }
+}</code></pre>
             </div>
             <div class="project-label">Text example</div>
             <a class="project-link" href="projects/project-3.html">View Project <span>→</span></a>
