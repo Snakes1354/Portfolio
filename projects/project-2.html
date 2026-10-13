@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#43006c">
     <title>Project Two | Daniel Worden</title>
     <meta name="description" content="Project two by Daniel Worden">
-    <link rel="stylesheet" href="../css/styles.css?v=20261013f">
+    <link rel="stylesheet" href="../css/styles.css?v=20261013g">
   </head>
   <body>
     <canvas class="sakura-canvas" aria-hidden="true"></canvas>
@@ -36,30 +36,41 @@
 
     <main>
       <section class="panel project-page">
-        <article class="project-detail">
-          <div class="project-preview preview-two" aria-hidden="true">
-            <svg viewBox="0 0 240 150" class="project-svg" aria-hidden="true">
-              <g fill="none" stroke="#1d1920" stroke-width="1.5">
-                <rect x="38" y="40" width="44" height="24" rx="4"/>
-                <rect x="96" y="40" width="44" height="24" rx="4"/>
-                <rect x="154" y="40" width="44" height="24" rx="4"/>
-                <path d="M80 52h14M140 52h14M60 64v28m44-28v28m44-28v28m44-28v28m-44 0H100m0 0H60m0 0h40m44 0h40m-40 0V64m40 0v28"/>
-                <rect x="56" y="95" width="60" height="18" rx="4"/>
-                <rect x="128" y="95" width="54" height="18" rx="4"/>
-              </g>
-            </svg>
+        <article class="project-detail project-detail--split">
+          <figure class="code-window">
+            <figcaption><span class="code-dots" aria-hidden="true"></span>Blocker1.cs</figcaption>
+            <pre tabindex="0"><code><span class="c-keyword">using</span> <span class="c-type">UnityEngine</span>;
+
+<span class="c-keyword">public</span> <span class="c-keyword">class</span> <span class="c-type">Blocker1</span> : <span class="c-type">MonoBehaviour</span>
+{
+
+    <span class="c-keyword">public</span> <span class="c-type">GameObject</span> <span class="c-name">blocker1</span>;
+    <span class="c-keyword">public</span> <span class="c-type">GameObject</span> <span class="c-type">Gate</span>;
+
+    <span class="c-keyword">void</span> <span class="c-type">OnTriggerEnter</span>(<span class="c-type">Collider</span> <span class="c-name">collision</span>)
+    {
+        <span class="c-keyword">if</span>(!<span class="c-name">collision</span>.<span class="c-type">CompareTag</span>(<span class="c-string">&quot;Player&quot;</span>)) <span class="c-keyword">return</span>;
+        {
+            <span class="c-type">Gate</span>.<span class="c-type">SetActive</span>(<span class="c-number">false</span>);
+            <span class="c-name">blocker1</span>.<span class="c-type">SetActive</span>(<span class="c-number">true</span>);
+        }
+    }
+
+}</code></pre>
+          </figure>
+          <div class="project-text">
+            <h1>Project Two</h1>
+            <p>
+              Add a description of this project here: what it does, what you built it with and what
+              you learned making it.
+            </p>
+            <a class="project-link" href="../index.html#work"><span>←</span> Back to projects</a>
           </div>
-          <h1>Project Two</h1>
-          <p>
-            Add a description of this project here: what it does, what you built it with and what
-            you learned making it.
-          </p>
-          <a class="project-link" href="../index.html#work"><span>←</span> Back to projects</a>
         </article>
       </section>
     </main>
 
-    <script src="../js/theme.js?v=20261013f"></script>
-    <script src="../js/sakura.js?v=20261013f"></script>
+    <script src="../js/theme.js?v=20261013g"></script>
+    <script src="../js/sakura.js?v=20261013g"></script>
   </body>
 </html>
