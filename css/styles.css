@@ -356,15 +356,15 @@ main {
 
 .project-grid {
   width: min(1180px, 88vw);
-  margin-top: 2rem;
+  margin-top: 1.4rem;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 2.2rem 2rem;
+  gap: 1.6rem 2rem;
 }
 
 .project-card {
   width: 100%;
-  min-height: 330px;
+  min-height: 300px;
   padding: 0.8rem 1rem 1rem;
   border: 4px solid var(--outline);
   border-radius: 28px;
@@ -378,7 +378,7 @@ main {
 
 .project-preview {
   width: 100%;
-  min-height: 180px;
+  min-height: 160px;
   border: 1px solid var(--surface-border);
   border-radius: 12px;
   background: var(--preview-bg);
