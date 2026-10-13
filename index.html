@@ -275,17 +275,52 @@
           </article>
 
           <article class="project-card">
-            <div class="project-preview preview-five" aria-hidden="true">
-              <svg viewBox="0 0 240 150" class="project-svg" aria-hidden="true">
-                <g fill="none" stroke="#1d1920" stroke-width="1.5">
-                  <rect x="36" y="40" width="46" height="22" rx="4"/>
-                  <rect x="96" y="40" width="46" height="22" rx="4"/>
-                  <rect x="156" y="40" width="46" height="22" rx="4"/>
-                  <path d="M80 52h16M140 52h16M58 64v28m46-28v28m42-28v28m42-28v28m-42 0H108m0 0H58m0 0h50m42 0h42m-42 0V64m42 0v28"/>
-                  <rect x="56" y="96" width="50" height="18" rx="4"/>
-                  <rect x="120" y="96" width="52" height="18" rx="4"/>
-                </g>
-              </svg>
+            <div class="project-preview preview-five code-preview" aria-hidden="true">
+              <pre><code>    <span class="c-keyword">public</span> <span class="c-keyword">void</span> <span class="c-type">TakeDamage</span>(<span class="c-keyword">int</span> <span class="c-name">amount</span>)
+    {
+        <span class="c-type">CurrentHealth</span> -= <span class="c-name">amount</span>;
+        <span class="c-comment">// Makes it take damage.</span>
+
+        <span class="c-name">healthBar</span>.<span class="c-type">UpdateHealthBar</span>(<span class="c-type">CurrentHealth</span>, <span class="c-type">MaxHealth</span>);
+
+        <span class="c-keyword">if</span>(<span class="c-type">CurrentHealth</span> &lt;= <span class="c-number">0</span>)
+        {
+            <span class="c-type">Death</span>();
+            <span class="c-type">ExpManager</span>.<span class="c-type">Instance</span>.<span class="c-type">AddExperience</span>(<span class="c-type">ExpAmount</span>);
+            <span class="c-comment">// Call Death method when it hits 0 hp.</span>
+        }
+    }
+
+    <span class="c-keyword">void</span> <span class="c-type">Death</span>()
+    {
+        <span class="c-type">KillManager</span>.<span class="c-type">PrintEnemyCount</span>();
+
+        <span class="c-keyword">if</span> (<span class="c-type">Random</span>.<span class="c-name">value</span> &lt;= <span class="c-type">DropChance</span>)
+        {
+            <span class="c-type">RaycastHit</span> <span class="c-name">hit</span>;
+
+            <span class="c-keyword">if</span> (<span class="c-type">Physics</span>.<span class="c-type">Raycast</span>(<span class="c-name">transform</span>.<span class="c-name">position</span> + <span class="c-type">Vector3</span>.<span class="c-name">up</span> * <span class="c-number">2f</span>, <span class="c-type">Vector3</span>.<span class="c-name">down</span>, <span class="c-keyword">out</span> <span class="c-name">hit</span>, <span class="c-number">10f</span>))
+            {
+                <span class="c-type">GameObject</span> <span class="c-name">newchest</span> = <span class="c-type">Instantiate</span>(<span class="c-type">Chest</span>, <span class="c-name">hit</span>.<span class="c-name">point</span> + <span class="c-type">Vector3</span>.<span class="c-name">down</span> * <span class="c-number">1f</span>, <span class="c-type">Quaternion</span>.<span class="c-name">identity</span>);
+                <span class="c-name">newchest</span>.<span class="c-type">SetActive</span>(<span class="c-number">true</span>);
+            }
+            <span class="c-keyword">else</span>
+            {
+                <span class="c-type">Instantiate</span>(<span class="c-type">Chest</span>, <span class="c-name">transform</span>.<span class="c-name">position</span>, <span class="c-type">Quaternion</span>.<span class="c-name">identity</span>);
+            }
+        }
+
+        <span class="c-type">Destroy</span>(<span class="c-name">gameObject</span>);
+    }
+
+    <span class="c-keyword">private</span> <span class="c-keyword">void</span> <span class="c-type">OnDrawGizmos</span>()
+    {
+        <span class="c-type">Gizmos</span>.<span class="c-name">color</span> = <span class="c-type">Color</span>.<span class="c-name">red</span>;
+        <span class="c-type">Gizmos</span>.<span class="c-type">DrawWireSphere</span>(<span class="c-name">transform</span>.<span class="c-name">position</span>, <span class="c-name">attackRange</span>);
+        <span class="c-type">Gizmos</span>.<span class="c-name">color</span> = <span class="c-type">Color</span>.<span class="c-name">yellow</span>;
+        <span class="c-type">Gizmos</span>.<span class="c-type">DrawWireSphere</span>(<span class="c-name">transform</span>.<span class="c-name">position</span>, <span class="c-name">aggroRange</span>);
+    }
+}</code></pre>
             </div>
             <div class="project-label">Text example</div>
             <a class="project-link" href="projects/project-5.html">View Project <span>→</span></a>
