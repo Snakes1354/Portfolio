@@ -16,7 +16,6 @@
   --surface-text: #fffaff;
   --surface-border: rgba(255,255,255,0.25);
   --preview-bg: rgba(255,255,255,0.08);
-  --illustration-line: #21182b;
   --control-bg: rgba(255,255,255,0.14);
   --control-ink: #fffaff;
 }
@@ -37,7 +36,6 @@
   --surface-text: #281b30;
   --surface-border: rgba(70,36,95,0.22);
   --preview-bg: rgba(255,255,255,0.55);
-  --illustration-line: #362442;
   --control-bg: rgba(99,52,130,0.12);
   --control-ink: #47245f;
 }
@@ -388,15 +386,6 @@ main {
   padding: 0.6rem;
 }
 
-.project-svg {
-  width: min(100%, 240px);
-  height: auto;
-}
-
-.project-svg g {
-  stroke: var(--illustration-line);
-}
-
 .project-label {
   margin-top: 0.8rem;
   font-size: clamp(1.8rem, 1.8vw, 2.7rem);
@@ -453,10 +442,6 @@ main {
 .project-detail .project-preview {
   height: auto;
   min-height: clamp(180px, 34vh, 340px);
-}
-
-.project-detail .project-svg {
-  width: min(100%, 420px);
 }
 
 .project-detail h1 {
@@ -1047,10 +1032,6 @@ main {
   .project-preview {
     min-height: 0;
     height: clamp(90px, 18vh, 180px);
-  }
-
-  .project-svg {
-    max-height: 100%;
   }
 
   .project-label {
