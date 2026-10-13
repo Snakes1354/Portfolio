@@ -451,7 +451,17 @@ main {
 }
 
 .project-detail .project-preview {
+  height: auto;
   min-height: clamp(180px, 34vh, 340px);
+}
+
+/* Screenshots keep their own size (and stay sharp) rather than stretching to fill the frame. */
+.project-shot {
+  width: auto;
+  max-width: 100%;
+  max-height: 46vh;
+  height: auto;
+  border-radius: 8px;
 }
 
 .project-detail .project-svg {
@@ -461,7 +471,7 @@ main {
 .project-detail h1 {
   margin: 1.2rem 0 0;
   color: var(--white);
-  font-size: clamp(2.6rem, 3vw, 4.2rem);
+  font-size: clamp(2.4rem, 2.6vw, 3.6rem);
   line-height: 1.1;
   letter-spacing: -0.06em;
   font-weight: 500;
@@ -471,14 +481,18 @@ main {
   max-width: 620px;
   margin: 0.8rem auto 0;
   color: var(--white);
-  font-size: clamp(1.25rem, 1.5vw, 1.9rem);
+  font-size: clamp(1.15rem, 1.2vw, 1.5rem);
   line-height: 1.35;
   letter-spacing: -0.03em;
   opacity: 0.85;
 }
 
 .project-detail .project-link {
+  width: auto;
   margin-top: 1.4rem;
+  padding: 0.6rem 1.6rem;
+  font-size: clamp(1.2rem, 1.3vw, 1.7rem);
+  white-space: nowrap;
 }
 
 .contact-panel {
