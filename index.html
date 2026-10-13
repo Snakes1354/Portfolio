@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#43006c">
     <title>Portfolio | Daniel Worden</title>
     <meta name="description" content="Daniel Worden portfolio homepage">
-    <link rel="stylesheet" href="css/styles.css?v=20261013g">
+    <link rel="stylesheet" href="css/styles.css?v=20261013h">
   </head>
   <body>
     <canvas class="sakura-canvas" aria-hidden="true"></canvas>
@@ -327,17 +327,43 @@
           </article>
 
           <article class="project-card">
-            <div class="project-preview preview-six" aria-hidden="true">
-              <svg viewBox="0 0 240 150" class="project-svg" aria-hidden="true">
-                <g fill="none" stroke="#1d1920" stroke-width="1.5">
-                  <rect x="36" y="42" width="44" height="22" rx="4"/>
-                  <rect x="96" y="42" width="44" height="22" rx="4"/>
-                  <rect x="156" y="42" width="44" height="22" rx="4"/>
-                  <path d="M80 54h16M138 54h16M60 64v28m42-28v28m42-28v28m42-28v28m-42 0H102m0 0H60m0 0h42m42 0h42m-42 0V64m42 0v28"/>
-                  <rect x="56" y="96" width="50" height="18" rx="4"/>
-                  <rect x="120" y="96" width="56" height="18" rx="4"/>
-                </g>
-              </svg>
+            <div class="project-preview preview-six code-preview" aria-hidden="true">
+              <pre><code><span class="c-keyword">using</span> <span class="c-type">UnityEngine</span>;
+<span class="c-keyword">using</span> <span class="c-type">System</span>.<span class="c-type">Collections</span>;
+<span class="c-keyword">using</span> <span class="c-type">System</span>.<span class="c-type">Collections</span>.<span class="c-type">Generic</span>;
+
+<span class="c-keyword">public</span> <span class="c-keyword">class</span> <span class="c-type">Tutorial</span> : <span class="c-type">MonoBehaviour</span>
+{
+    <span class="c-comment">//VARIABLES</span>
+    [<span class="c-type">SerializeField</span>] <span class="c-keyword">private</span> <span class="c-keyword">int</span> <span class="c-type">CurrentHealthTu</span> = <span class="c-number">2</span>;
+    [<span class="c-type">SerializeField</span>] <span class="c-keyword">private</span> <span class="c-keyword">int</span> <span class="c-type">MaxHealthTu</span> = <span class="c-number">3</span>;
+
+    <span class="c-keyword">void</span> <span class="c-type">Awake</span>()
+    {
+        <span class="c-type">CurrentHealthTu</span> = <span class="c-type">MaxHealthTu</span>;
+        <span class="c-comment">// Sets hp at the start.</span>
+    }
+
+    <span class="c-keyword">public</span> <span class="c-keyword">void</span> <span class="c-type">TakeDamage</span>(<span class="c-keyword">int</span> <span class="c-name">amountTu</span>)
+    {
+        <span class="c-type">CurrentHealthTu</span> -= <span class="c-name">amountTu</span>;
+        <span class="c-comment">// Makes it take damage.</span>
+
+        <span class="c-keyword">if</span>(<span class="c-type">CurrentHealthTu</span> &lt;= <span class="c-number">0</span>)
+        {
+            <span class="c-type">Death</span>();
+            <span class="c-type">KillManager</span>.<span class="c-type">PrintEnemyCount</span>();
+            <span class="c-comment">// Call Death method when it hits 0 hp.</span>
+        }
+    }
+
+    <span class="c-keyword">void</span> <span class="c-type">Death</span>()
+    {
+        <span class="c-type">Destroy</span>(<span class="c-name">gameObject</span>);
+        <span class="c-comment">// Death function</span>
+        <span class="c-comment">// Temporary: Destroy Object</span>
+    }
+}</code></pre>
             </div>
             <div class="project-label">Text example</div>
             <a class="project-link" href="projects/project-6.html">View Project <span>→</span></a>
@@ -449,9 +475,9 @@
       <audio class="now-playing-audio" preload="none"></audio>
     </aside>
 
-    <script src="js/theme.js?v=20261013g"></script>
-    <script src="js/script.js?v=20261013g"></script>
-    <script src="js/sakura.js?v=20261013g"></script>
-    <script src="js/music.js?v=20261013g"></script>
+    <script src="js/theme.js?v=20261013h"></script>
+    <script src="js/script.js?v=20261013h"></script>
+    <script src="js/sakura.js?v=20261013h"></script>
+    <script src="js/music.js?v=20261013h"></script>
   </body>
 </html>
