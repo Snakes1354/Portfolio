@@ -495,6 +495,35 @@ main {
   white-space: nowrap;
 }
 
+/* A project page with a screenshot: the picture on the left, unframed, and the text beside it. */
+.project-detail--split {
+  width: min(1100px, 90vw);
+  padding: 1.6rem 2.2rem;
+  flex-direction: row;
+  gap: 2.6rem;
+  text-align: left;
+}
+
+.project-detail--split .project-shot {
+  flex: none;
+  max-height: 70vh;
+}
+
+.project-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.project-detail--split h1 {
+  margin-top: 0;
+}
+
+.project-detail--split p {
+  margin-left: 0;
+}
+
 .contact-panel {
   display: flex;
   flex-direction: column;
@@ -1023,6 +1052,21 @@ main {
   .settings-button {
     width: 42px;
     height: 42px;
+  }
+
+  .project-detail--split {
+    flex-direction: column;
+    padding: 1.2rem 1.1rem 1.6rem;
+    gap: 1.2rem;
+    text-align: center;
+  }
+
+  .project-detail--split .project-text {
+    align-items: center;
+  }
+
+  .project-detail--split p {
+    margin-left: auto;
   }
 
   .hero-card {
