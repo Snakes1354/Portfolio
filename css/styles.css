@@ -854,6 +854,49 @@ main {
   }
 }
 
+/* Shorter laptop screens: shrink the project cards with the screen height so both rows
+   of the Programming section still fit below the header. */
+@media (min-width: 1101px) and (max-height: 940px) {
+  .work-panel {
+    justify-content: center;
+    padding: 0.8rem 0;
+  }
+
+  .work-panel .section-title {
+    font-size: clamp(2.6rem, 7.5vh, 5.8rem);
+  }
+
+  .project-grid {
+    margin-top: 1rem;
+    gap: 1.1rem 1.6rem;
+  }
+
+  .project-card {
+    min-height: 0;
+    padding: 0.6rem 0.8rem 0.8rem;
+  }
+
+  .project-preview {
+    min-height: 0;
+    height: clamp(90px, 18vh, 180px);
+  }
+
+  .project-svg {
+    max-height: 100%;
+  }
+
+  .project-label {
+    margin-top: 0.5rem;
+    font-size: clamp(1.35rem, 3.4vh, 2.7rem);
+  }
+
+  .project-card button {
+    margin-top: 0.6rem;
+    padding: 0.45rem 1rem;
+    font-size: clamp(1.1rem, 2.8vh, 2.3rem);
+  }
+}
+
 @media (max-width: 1100px) {
   .project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
