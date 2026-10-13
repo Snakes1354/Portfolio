@@ -405,8 +405,11 @@ main {
   color: var(--white);
 }
 
-.project-card button {
+.project-link {
+  display: block;
   width: min(100%, 260px);
+  text-align: center;
+  text-decoration: none;
   margin-top: 1rem;
   padding: 0.7rem 1rem;
   border: 0;
@@ -421,9 +424,61 @@ main {
   transition: transform 180ms ease, filter 180ms ease;
 }
 
-.project-card button:hover,
-.project-card button:focus-visible {
+.project-link:hover,
+.project-link:focus-visible {
   filter: drop-shadow(0 0 10px rgba(255, 183, 197, 0.75));
+}
+
+/* A project's own page, reached only from its card's View Project link. */
+.project-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0 3rem;
+}
+
+.project-detail {
+  width: min(860px, 88vw);
+  padding: 1rem 1.2rem 1.6rem;
+  border: 4px solid var(--outline);
+  border-radius: 28px;
+  background: var(--card-bg);
+  box-shadow: 0 0 10px rgba(177, 117, 255, 0.55), 0 0 20px rgba(145, 78, 235, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.project-detail .project-preview {
+  min-height: clamp(180px, 34vh, 340px);
+}
+
+.project-detail .project-svg {
+  width: min(100%, 420px);
+}
+
+.project-detail h1 {
+  margin: 1.2rem 0 0;
+  color: var(--white);
+  font-size: clamp(2.6rem, 3vw, 4.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.06em;
+  font-weight: 500;
+}
+
+.project-detail p {
+  max-width: 620px;
+  margin: 0.8rem auto 0;
+  color: var(--white);
+  font-size: clamp(1.25rem, 1.5vw, 1.9rem);
+  line-height: 1.35;
+  letter-spacing: -0.03em;
+  opacity: 0.85;
+}
+
+.project-detail .project-link {
+  margin-top: 1.4rem;
 }
 
 .contact-panel {
@@ -591,8 +646,8 @@ main {
 .contact-row:focus-visible,
 .settings-button:hover,
 .settings-button:focus-visible,
-.project-card button:hover,
-.project-card button:focus-visible,
+.project-link:hover,
+.project-link:focus-visible,
 .home-link:hover,
 .home-link:focus-visible {
   transform: translateY(-3px) scale(1.03);
@@ -890,7 +945,7 @@ main {
     font-size: clamp(1.35rem, 3.4vh, 2.7rem);
   }
 
-  .project-card button {
+  .project-link {
     margin-top: 0.6rem;
     padding: 0.45rem 1rem;
     font-size: clamp(1.1rem, 2.8vh, 2.3rem);
@@ -1004,7 +1059,7 @@ main {
   .home-button svg,
   .nav-link,
   .settings-button,
-  .project-card button,
+  .project-link,
   .home-link,
   .contact-row,
   .contact-icon,
@@ -1024,8 +1079,8 @@ main {
   .nav-link:focus-visible,
   .settings-button:hover,
   .settings-button:focus-visible,
-  .project-card button:hover,
-  .project-card button:focus-visible,
+  .project-link:hover,
+  .project-link:focus-visible,
   .home-link:hover,
   .home-link:focus-visible,
   .contact-row:hover,
